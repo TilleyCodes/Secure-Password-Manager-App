@@ -2,8 +2,9 @@ import os
 import random
 import string
 import re
-from typing import Dict, List, Union
-
+import hashlib
+import requests
+from typing import Dict, List, Optional, Tuple, Union
 
 def clear_screen() -> None:
     os.system('cls' if os.name == 'nt' else 'clear')
@@ -25,7 +26,7 @@ def print_menu() -> None:
     print("6. Delete password")
     print("7. Save and exit")
     print()
-    
+
 def generate_password(length: int = 16, include_special: bool = True) -> str:
     # Define character sets
     lowercase = string.ascii_lowercase
@@ -115,3 +116,31 @@ def analyse_password_strength(password: str) -> Dict[str, Union[int, str, bool, 
         'has_digit': has_digit,
         'has_special': has_special
     }
+
+def check_password_breach(password: str) -> Tuple[bool, Optional[int]]:
+    # Hash the password with SHA-1
+    sha1_hash = hashlib.sha1(password.encode()).hexdigest().upper()
+    hash_prefix = sha1_hash[:5]
+    hash_suffix = sha1_hash[5:]
+
+    try:
+        # Query the API with the hash prefix
+        response = requests.get(f"https://api.pwnedpasswords.com/range/{hash_prefix}", timeout=10)
+
+        if response.status_code == 200:
+            # Check if the hash suffix is in the response
+            for line in response.text.splitlines():
+                if line.split(':')[0] == hash_suffix:
+                    occurrences = int(line.split(':')[1])
+                    return True, occurrences
+
+            # Password not found in breaches
+            return False, None
+        else:
+            print(f"Error checking password breach: {response.status_code}")
+            return False, None
+
+    except Exception as e:
+        print(f"Error checking password breach: {str(e)}")
+        return False, None
+    

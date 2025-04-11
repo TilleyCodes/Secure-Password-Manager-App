@@ -1,11 +1,11 @@
 import os
-from cryptography.fernet import Fernet
-from cryptography.hazmat.primitives import hashes
-from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 import base64
 import json
 import time
-
+from typing import List, Optional
+from cryptography.fernet import Fernet
+from cryptography.hazmat.primitives import hashes
+from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 from functions.password_functions import analyse_password_strength
 
 class PasswordManager:
@@ -85,3 +85,31 @@ class PasswordManager:
         }
 
         print(f"Password for {service} ({username}) added successfully.")
+
+    def get_password(self, service: str, username: str) -> Optional[str]:
+        if service in self.passwords and username in self.passwords[service]:
+            return self.passwords[service][username]['password']
+        return None
+    
+    def list_services(self) -> List[str]:
+        return list(self.passwords.keys())
+    
+    def list_usernames(self, service: str) -> List[str]:
+        if service in self.passwords:
+            return list(self.passwords[service].keys())
+        return []
+    
+    def delete_password(self, service: str, username: str) -> bool:
+        if service in self.passwords and username in self.passwords[service]:
+            del self.passwords[service][username]
+
+            # Remove the service if no usernames left
+            if not self.passwords[service]:
+                del self.passwords[service]
+
+            print(f"Password for {service} ({username}) deleted successfully.")
+            return True
+
+        print(f"Password for {service} ({username}) not found.")
+        return False
+    
