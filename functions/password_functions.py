@@ -4,6 +4,7 @@ import string
 import re
 from typing import Dict, List, Union
 
+
 def clear_screen() -> None:
     os.system('cls' if os.name == 'nt' else 'clear')
 
