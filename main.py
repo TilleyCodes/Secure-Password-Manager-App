@@ -1,7 +1,7 @@
 import getpass
 import sys
 from classes.password_manager import PasswordManager
-from functions.password_functions import (print_header, print_menu, generate_password)
+from functions.password_functions import (print_header, print_menu, generate_password, analyse_password_strength)
 
 def main() -> None:
     print_header()
@@ -51,4 +51,43 @@ def main() -> None:
                     print(f"\nGenerated password: {password}")
             else:
                 password = getpass.getpass("Enter password: ")
+
+            # Analyse password strength
+            strength_info = analyse_password_strength(password)
+            print(f"\nPassword strength: {strength_info['strength']}")
+            for feedback in strength_info['feedback']:
+                print(f"- {feedback}")
+
+            # Check for breaches
+            print("\nChecking if password has been compromised...")
+            is_breached, occurrences = check_password_breach(password)
+
+            if is_breached:
+                print(f"WARNING: This password appears in {occurrences} data breaches!")
+                confirm = input("Do you still want to save this password? (y/n): ").lower()
+                if confirm != 'y':
+                    print("Password not saved.")
+                    input("Press Enter to continue...")
+                    continue
+            else:
+                print("Good news! This password hasn't been found in any known data breaches.")
+
+            pm.add_password(service, username, password)
+            pm.save_passwords()
+
+            input("Press Enter to continue...")
+
+        elif user_selection == '3':
+            # Retrieve password
+            service = input("\nEnter service name: ")
+            username = input("Enter username: ")
+
+            password = pm.get_password(service, username)
+
+            if password:
+                print(f"\nPassword for {service} ({username}): {password}")
+            else:
+                print(f"\nNo password found for {service} ({username}).")
+
+            input("Press Enter to continue...")    
         
