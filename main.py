@@ -17,9 +17,7 @@ from classes.password_manager import PasswordManager
 # Importing password manager functions
 # Source: local module - functions/password_functions.py
 # Purpose: To provide utility functions for password generation, analysis, breach checking, and UI
-from functions.password_functions import (print_header, print_menu,
-                                         generate_password, analyse_password_strength,
-                                         check_password_breach)
+from functions.password_functions import (print_header, print_menu, generate_password, analyse_password_strength, check_password_breach)
 
 
 def main() -> None:
@@ -50,15 +48,24 @@ def main() -> None:
 
         if user_selection == '1':
             # View all services
-            services = pm.list_services()
-            if not services:
-                print("\nNo passwords stored yet.")
+            print("\n===== ALL STORED SERVICES =====")
+
+            # Direct access to check if passwords dictionary exists and has content
+            if not hasattr(pm, 'passwords') or not pm.passwords:
+                print("No passwords stored yet.")
             else:
-                print("\nStored services:")
-                for idx, service in enumerate(services, 1):
-                    usernames = pm.list_usernames(service)
+                # Direct iteration through the passwords dictionary
+                count = 1
+                for service in pm.passwords:
+                    usernames = list(pm.passwords[service].keys())
                     user_count = len(usernames)
-                    print(f"{idx}. {service} ({user_count} username{'s' if user_count != 1 else ''})")
+                    print(f"{count}. {service} ({user_count} username{'s' if user_count != 1 else ''})")
+                    for username in usernames:
+                        print(f"   - {username}")
+                    count += 1
+
+            print("==============================\n")
+            input("Press Enter to continue...")
 
         elif user_selection == '2':
             # Add new password

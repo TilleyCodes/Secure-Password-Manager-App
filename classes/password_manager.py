@@ -37,7 +37,6 @@ from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
 # Purpose: To use the password analysis functionality
 from functions.password_functions import analyse_password_strength
 
-
 class PasswordManager:
     """
     Main class for managing passwords with encryption.
