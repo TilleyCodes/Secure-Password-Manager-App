@@ -143,3 +143,30 @@ def main() -> None:
                 print("Good news! This password hasn't been found in any known data breaches.")
 
             input("Press Enter to continue...")
+
+        elif user_selection == '6':
+            # Delete password
+            service = input("\nEnter service name: ")
+            username = input("Enter username: ")
+
+            if pm.delete_password(service, username):
+                pm.save_passwords()
+
+            input("Press Enter to continue...")
+
+        elif user_selection == '7':
+            # Save and exit
+            pm.save_passwords()
+            print("\nThank you for using the Secure Password Manager. Goodbye!")
+            break
+
+        else:
+            print("\nInvalid choice. Please enter a number from 1 to 7.")
+            input("Press Enter to continue...")
+
+    if __name__ == "__main__":
+        try:
+            main()
+        except KeyboardInterrupt:
+            print("\n\nProgram interrupted. Exiting...")
+            sys.exit(0)
