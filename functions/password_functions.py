@@ -1,10 +1,14 @@
+# pylint: disable=broad-exception-caught
+
 import os
 import random
 import string
 import re
 import hashlib
-import requests
+
 from typing import Dict, List, Optional, Tuple, Union
+
+import requests
 
 def clear_screen() -> None:
     os.system('cls' if os.name == 'nt' else 'clear')

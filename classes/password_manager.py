@@ -1,3 +1,6 @@
+# pylint: disable=line-too-long
+# pylint: disable=broad-exception-caught
+
 import os
 import base64
 import json

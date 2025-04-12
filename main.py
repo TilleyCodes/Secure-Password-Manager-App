@@ -1,3 +1,5 @@
+# pylint: disable=line-too-long
+
 import getpass
 import sys
 from classes.password_manager import PasswordManager
