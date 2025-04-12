@@ -1,11 +1,37 @@
 # pylint: disable=line-too-long
 
+"""This module is the main file to run the Secure Password Manager Application."""
+
+# Importing getpass for secure password input
+# Source: Python standard library
+# Purpose: To hide password input from the screen while typing
 import getpass
+# Importing sys for handling program exit
+# Source: Python standard library
+# Purpose: To exit the program gracefully on keyboard interrupt
 import sys
+# Importing PasswordManager class
+# Source: local module - classes/password_manager.py
+# Purpose: To provide core password management functionality including encryption and storage
 from classes.password_manager import PasswordManager
-from functions.password_functions import (print_header, print_menu, generate_password, analyse_password_strength, check_password_breach)
+# Importing password manager functions
+# Source: local module - functions/password_functions.py
+# Purpose: To provide utility functions for password generation, analysis, breach checking, and UI
+from functions.password_functions import (print_header, print_menu,
+                                         generate_password, analyse_password_strength,
+                                         check_password_breach)
+
 
 def main() -> None:
+    """
+    Main function to run the password manager application.
+    
+    Handles the login process, displays the main menu, and processes user input.
+    All core functionality is accessed through this function.
+    
+    Returns:
+        None
+    """
     print_header()
     print("Welcome to the Secure Password Manager!")
     print("\nPlease enter your master password to continue.")
@@ -166,9 +192,11 @@ def main() -> None:
             print("\nInvalid choice. Please enter a number from 1 to 7.")
             input("Press Enter to continue...")
 
-    if __name__ == "__main__":
-        try:
-            main()
-        except KeyboardInterrupt:
-            print("\n\nProgram interrupted. Exiting...")
-            sys.exit(0)
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n\nProgram interrupted. Exiting...")
+        sys.exit(0)
+        
