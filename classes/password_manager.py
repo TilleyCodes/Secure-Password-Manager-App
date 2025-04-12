@@ -37,7 +37,7 @@ class PasswordManager:
 
         key = base64.urlsafe_b64encode(kdf.derive(password_bytes))
         return key
-    
+
     def _load_passwords(self) -> None:
         try:
             with open(self.data_file, 'rb') as file:
@@ -90,15 +90,15 @@ class PasswordManager:
         if service in self.passwords and username in self.passwords[service]:
             return self.passwords[service][username]['password']
         return None
-    
+
     def list_services(self) -> List[str]:
         return list(self.passwords.keys())
-    
+
     def list_usernames(self, service: str) -> List[str]:
         if service in self.passwords:
             return list(self.passwords[service].keys())
         return []
-    
+
     def delete_password(self, service: str, username: str) -> bool:
         if service in self.passwords and username in self.passwords[service]:
             del self.passwords[service][username]

@@ -1,7 +1,7 @@
 import getpass
 import sys
 from classes.password_manager import PasswordManager
-from functions.password_functions import (print_header, print_menu, generate_password, analyse_password_strength)
+from functions.password_functions import (print_header, print_menu, generate_password, analyse_password_strength, check_password_breach)
 
 def main() -> None:
     print_header()
