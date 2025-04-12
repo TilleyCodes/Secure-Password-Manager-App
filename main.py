@@ -89,5 +89,57 @@ def main() -> None:
             else:
                 print(f"\nNo password found for {service} ({username}).")
 
-            input("Press Enter to continue...")    
-        
+            input("Press Enter to continue...")
+
+        elif user_selection == '4':
+            # Generate secure password
+            try:
+                length = int(input("\nEnter password length (default 16): ") or "16")
+                include_special = input("Include special characters? (y/n, default y): ").lower() != 'n'
+
+                password = generate_password(length, include_special)
+                print(f"\nGenerated password: {password}")
+
+                # Analyse password strength
+                strength_info = analyse_password_strength(password)
+                print(f"Password strength: {strength_info['strength']}")
+                for feedback in strength_info['feedback']:
+                    print(f"- {feedback}")
+
+                # Check for breaches
+                print("\nChecking if password has been compromised...")
+                is_breached, occurrences = check_password_breach(password)
+
+                if is_breached:
+                    print(f"WARNING: This password appears in {occurrences} data breaches!")
+                else:
+                    print("Good news! This password hasn't been found in any known data breaches.")
+
+                save_choice = input("\nDo you want to save this password? (y/n): ").lower()
+
+                if save_choice == 'y':
+                    service = input("Enter service name: ")
+                    username = input("Enter username: ")
+                    pm.add_password(service, username, password)
+                    pm.save_passwords()
+                    print(f"Password saved for {service} ({username}).")
+
+            except ValueError:
+                print("Invalid input. Please enter a valid number for password length.")
+
+            input("Press Enter to continue...")
+
+        elif user_selection == '5':
+            # Check password breach
+            password = getpass.getpass("\nEnter password to check: ")
+
+            print("Checking if password has been compromised...")
+            is_breached, occurrences = check_password_breach(password)
+
+            if is_breached:
+                print(f"WARNING: This password appears in {occurrences} data breaches!")
+                print("It is highly recommended to change this password immediately.")
+            else:
+                print("Good news! This password hasn't been found in any known data breaches.")
+
+            input("Press Enter to continue...")
