@@ -7,7 +7,7 @@
 3. [System Requirements](#system-requirements)
 4. [Set Up](#set-up)
 5. [Application Help](#application-help)
-6. [Dependencies and Licenses](#dependencies-and-licenses)
+6. [Dependencies and Licences](#dependencies-and-licences)
 7. [Application Architecture](#application-architecture)
 8. [References](#references)
 
@@ -56,7 +56,7 @@ The application encrypts all password data using strong cryptographic methods to
 - **Storage**:
   - Minimum 10 MB free space
 - **Dependencies**:
-  - See [Dependencies and Licenses](#dependencies-and-licenses) section
+  - See [Dependencies and Licences](#dependencies-and-licences) section
 
 ---
 
@@ -75,12 +75,14 @@ This application runs in a terminal CLI and requires Python 3.7 or later install
 2. **Set up a virtual environment (recommended)**
    
    For macOS/Linux:
+
    ```bash
    python3 -m venv .venv
    source .venv/bin/activate
    ```
    
    For Windows:
+
    ```bash
    python -m venv .venv
    .venv\Scripts\activate
@@ -106,6 +108,7 @@ To run the application:
 python main.py
 ```
 or
+
 ```bash
 python3 main.py
 ```
@@ -155,47 +158,47 @@ When you start the application, you'll see a welcome screen and will be prompted
 
 ---
 
-## Dependencies and Licenses
+## Dependencies and Licences
 
 The application depends on the following Python packages:
 
 - **cryptography==44.0.2**
-  - License: Apache License 2.0
+  - Licence: Apache Licence 2.0
   - Purpose: Provides Fernet encryption for secure password storage
   - ```pip install cryptography==44.0.2```
 
 - **requests==2.32.3**
-  - License: Apache License 2.0
+  - Licence: Apache Licence 2.0
   - Purpose: Used for API calls to check password breaches
   - ```pip install requests==2.32.3```
 
 - **pycparser==2.22**
-  - License: BSD License
+  - Licence: BSD Licence
   - Purpose: C parser in Python, dependency for cryptography
   - ```pip install pycparser==2.22```
 
 - **cffi==1.17.1**
-  - License: MIT License
+  - Licence: MIT Licence
   - Purpose: Foreign Function Interface for Python, dependency for cryptography
   - ```pip install cffi==1.17.1```
 
-- **charset normalizer==3.4.1**
-  - License: MIT License
+- **charset-normalizer==3.4.1**
+  - Licence: MIT Licence
   - Purpose: Character encoding detector, dependency for requests
   - ```pip install charset-normalizer==3.4.1```
 
 - **idna==3.10**
-  - License: BSD License
+  - Licence: BSD Licence
   - Purpose: Internationalised Domain Names, dependency for requests
   - ```pip install idna==3.10```
 
 - **urllib3==1.26.15**
-  - License: MIT License
+  - Licence: MIT Licence
   - Purpose: HTTP client for Python, dependency for requests
   - ```pip install urllib3==1.26.15```
 
 - **certifi==2025.1.31**
-  - License: Mozilla Public License 2.0
+  - Licence: Mozilla Public Licence 2.0
   - Purpose: Provides Mozilla's CA Bundle, dependency for requests
   - ```pip install certifi==2025.1.31```
 
