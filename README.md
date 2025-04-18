@@ -2,14 +2,21 @@
 
 ## Table Of Contents
 
-1. [Overview](#overview)
-2. [Features and Functions](#features-and-functions)
-3. [System Requirements](#system-requirements)
-4. [Set Up](#set-up)
-5. [Application Help](#application-help)
-6. [Dependencies and Licences](#dependencies-and-licences)
-7. [Application Architecture](#application-architecture)
-8. [References](#references)
+1. [Blog Link](#blog-link)
+2. [Overview](#overview)
+3. [Features and Functions](#features-and-functions)
+4. [System Requirements](#system-requirements)
+5. [Set Up](#set-up)
+6. [Application Help](#application-help)
+7. [Dependencies and Licences](#dependencies-and-licences)
+8. [Application Architecture](#application-architecture)
+9. [References](#references)
+
+---
+
+## Blog Link
+
+[Secure Password Manager Blog](https://tilleycodes.github.io/Secure_Password_Manager_Blog/secure-password-manager-blog/)
 
 ---
 
